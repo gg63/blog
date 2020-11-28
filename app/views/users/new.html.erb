@@ -2,18 +2,18 @@
 
 <%= form_with model: @user, url: user_path, local: true do |f| %>
 <div class="field">
-    <%= f.label :email %>
-    <%=f.text_field :email %>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
 </div>
 
 <div class="field">
-    <%= f.label :password %>
-    <%=f.password_field :password %>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
 </div>
 
 <div class="field">
-    <%= f.label :password_confirmation %>
-    <%=f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
 </div>
 
 <dvi>
