@@ -106,4 +106,41 @@ body {
     margin: 10px auto;
 }
 
+textarea {
+    border: 2px solid #000;  
+    border-radius: 0.67em;   
+    padding: 0.5em;          
+    background-color: snow;  
+    width: 100%;             
+    box-sizing: border-box;  
+    height: 120px;           
+    font-size: 1em;          
+    line-height: 1.2;        
+}
 
+.submit-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 12px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  background: #333;
+  color: #FFF;
+  lin-height: 1em;
+  transition: .3s;
+  border: 2px solid #333;
+  border-radius: 5%;
+  box-shadow: 6px 6px 3px #666666;
+}
+.btn:hover {
+ box-shadow: none;
+ color: #333;
+ background: #fff;
+}
