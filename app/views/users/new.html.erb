@@ -1,3 +1,16 @@
+<div id="header">
+    <div class = "logo">
+        <a href="/">ロゴ</a>
+    </div>
+    <div class ="link">
+        <ul id="nav">
+            <li>
+               <%= link_to "ログイン", login_path %>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <h1>Sign up</h1>
 
 <%= form_with model: @user, local: true do |f| %>
@@ -22,3 +35,7 @@
 <%= link_to "Login", login_path %>
 
 <% end %>
+
+<div id="footer">
+    <p>© 2020 Rails blog</p>
+</div>
