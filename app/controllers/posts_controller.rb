@@ -7,10 +7,11 @@ class PostsController < ApplicationController
     end 
     
     def show
-        
+      
     end
     
     def new
+        return redirect_to new_profile_path, alert: "プロフィールの登録をしてください" if current_user.profile.blank? 
         @post = Post.new
     end
     
@@ -51,5 +52,6 @@ class PostsController < ApplicationController
     
     def find_post
         @post = Post.find(params[:id])
+        @user = User.find(@post.user_id)
     end
 end

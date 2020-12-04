@@ -11,28 +11,27 @@
     </div>
 </div>
 
-<h1>Sign up</h1>
+<h2>新規登録</h2>
 
 <%= form_with model: @user, local: true do |f| %>
 <div class="field">
-    <%= f.label :email %><br>
+    <%= f.label :email,"メールアドレス" %><br>
     <%= f.text_field :email %>
 </div>
 
 <div class="field">
-    <%= f.label :password %><br>
+    <%= f.label :password, "パスワード" %><br>
     <%= f.password_field :password %>
 </div>
 
 <div class="field">
-    <%= f.label :password_confirmation %><br>
+    <%= f.label :password_confirmation, "パスワードの確認" %><br>
     <%= f.password_field :password_confirmation %>
 </div>
 
-<dvi>
-    <%= f.submit "Sign up" %>
-</dvi>
-<%= link_to "Login", login_path %>
+<div class="actions">
+    <%= f.submit "登録", class: "btn" %>
+</div>
 
 <% end %>
 

@@ -1,0 +1,19 @@
+<div id="header">
+    <div class = "logo">
+        <a href="/">ロゴ</a>
+    </div>
+    <div class ="link">
+        <ul id="nav">
+            <li>
+                <%= link_to "投稿", new_post_path %>
+            </li>
+            <li>
+                <%= link_to "ログアウト", logout_path, method: :delete %>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="footer">
+    <p>© 2020 Rails blog</p>
+</div>

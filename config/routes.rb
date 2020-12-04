@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :comments
+  resources :profiles, only: [:show, :new, :create, :edit, :update]
   root 'homes#top'
   resources :posts , only: [:index, :new, :create, :show]
   resources :users

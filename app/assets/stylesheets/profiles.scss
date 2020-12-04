@@ -1,10 +1,7 @@
-// Place all the styles related to the users controller here.
+// Place all the styles related to the profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-h2 {
-    text-align: center;
-}
-.field input {
+input[type="text"] {
     border: 2px solid #000;  
     border-radius: 0.67em;   
     padding: 0.5em;          
@@ -12,7 +9,14 @@ h2 {
     width: 100%;             
     box-sizing: border-box;  
     font-size: 1em;          
-    line-height: 1.2;     
+    line-height: 1.2;        
+}
+
+.submit-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
 }
 
 .btn {
@@ -28,16 +32,9 @@ h2 {
   border: 2px solid #333;
   border-radius: 5%;
   box-shadow: 6px 6px 3px #666666;
-  width: 25%;
 }
 .btn:hover {
  box-shadow: none;
  color: #333;
  background: #fff;
-}
-.actions {
-    margin: 15px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
