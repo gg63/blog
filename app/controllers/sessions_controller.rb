@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
-  before_action :already_login?, except: :destroy
+  before_action :redirect_loggedin_user,except: :destroy
   
   def new
   end
   
   def create
     user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
+    if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to posts_path, notice: "認証確認ログインしました"
+      redirect_to posts_path, notice: "ログインしました"
     else
       flash.now[:alert] = "emailまたはpasswordが違います"
       render :new
@@ -19,4 +19,5 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: "ログアウトしました"
   end
+  
 end
