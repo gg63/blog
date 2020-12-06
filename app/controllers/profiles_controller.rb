@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-    # before_action :authenticate_user!
     before_action :find_profile, only:[:show, :edit, :updete]
     
     def show
@@ -18,8 +17,8 @@ class ProfilesController < ApplicationController
     def create
         @profile = Profile.new(profile_params)
         @profile.user = current_user
-        if @profile.save!
-            redirect_to root_path, notice: "プロフィール情報の登録が完了しました"
+        if @profile.save
+            redirect_to posts_path, notice: "プロフィール情報の登録が完了しました"
         else
             render :new
         end
@@ -27,7 +26,7 @@ class ProfilesController < ApplicationController
     
     def update
         if @profile.update(profile_params)
-            redirect_to root_path, notice: "プロフィールの情報更新が完了しました"
+            redirect_to posts_path, notice: "プロフィールの情報更新が完了しました"
         else
             render :edit
         end
@@ -36,6 +35,7 @@ class ProfilesController < ApplicationController
     def destroy
         
     end
+    
     private
     
     def find_profile
