@@ -1,0 +1,4 @@
+<%= form_with model: @user do |form| %>
+  <%= form.text_area :user_name, id: "user_name" %>
+  <%= form.submit "更新する" %>
+<% end %>

@@ -1,5 +1,7 @@
 class LikesController < ApplicationController
     
+    before_action :set_variables
+
     def create
     @like = Like.new(user_id: current_user.id,post_id: params[:post_id])
     @like.save
@@ -13,6 +15,7 @@ class LikesController < ApplicationController
         result = [done: "destroy",user_id: current_user.id, post_id:params[:post_id]]
         redirect_to post_path(params[:post_id])
     end
+    
     
     
 end

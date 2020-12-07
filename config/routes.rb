@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :profiles, only: [:show, :new, :create, :edit, :update]
-  resource :likes, only: [:create, :destroy]
-  root 'homes#top'
-  resources :posts , only: [:index, :new, :create, :show]
+  # resource :likes, only: [:create, :destroy]
+  root 'posts#index'
+  resources :posts 
   resources :users
   get 'login', to: "sessions#new"
   post 'login', to: "sessions#create"

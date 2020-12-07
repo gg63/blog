@@ -46,13 +46,14 @@ class PostsController < ApplicationController
     end
     
     def post_params
-        params.require(:post).permit(:content, images: [])
+        params.require(:post).permit(:content, images: []).tap do |v|v[:user_id] = session[:user_id]
+    end
     end
     
     private
     
     def find_post
-        @post = Post.find(params[:id])
+        @post = Post.where(user_id: session[:user_id]).find(params[:id])
         @user = User.find(@post.user_id)
     end
 end
