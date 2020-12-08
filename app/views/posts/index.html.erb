@@ -1,3 +1,4 @@
+
 <div id="header">
     <div class = "logo">
         <a href="/">ロゴ</a>
@@ -6,6 +7,9 @@
         <ul id="nav">
             <li>
                 <%= link_to "投稿", new_post_path %>
+            </li>
+               <li>
+                <%= link_to "プロフィール", new_profile_path %>
             </li>
             <li>
                 <%= link_to "ログアウト", logout_path, method: :delete %>
@@ -17,21 +21,22 @@
     <div class="content-block">
         <% @posts.each do |post| %>
             <div class="content">
+    <%= link_to '削除', post_path(post), method: :delete, class: 'command' %>
                 <div class="user-about">
                     <div class="image">
-                        <%= image_tag "user.png", style: "width: 60px; border-radius: 50%;"  %>
+                        <%= image_tag post.user.image, style: "width: 60px; border-radius: 50%;"  %>
                     </div>
                     <div class="profile">
                         <div class="name-study">
                             <div class="name">
-                                ジェシカ
+                                <%= post.user.name %>
                             </div>
                             <div class="study">
-                                学習歴：3ヶ月
+                               <%= "学習歴: #{post.user.study}年" %>
                             </div>
                         </div>
                         <div class="purpose">
-                          Ruby on Railsを学んでいる目的： Railsを使って色々なアプリケーションを開発したい！
+                          <%= "Ruby on Railsを学んでいる目的： #{post.user.purpose} " %>
                         </div>
                     </div>
                 </div>
@@ -80,6 +85,6 @@
     </div>
 </div>
    
-    <div id="footer">
-        <p>© 2020 Rails blog</p>
-    </div>
+<!--<div id="footer">-->
+<!--    <p>© 2020 Rails blog</p>-->
+<!--</div>-->

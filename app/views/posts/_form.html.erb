@@ -13,7 +13,15 @@
         </ul>
     </div>
 </div>
-
+<div class="container">
+            <%= form_with model: @post, local: true do |f| %>
+            <%= f.text_area :content,placeholder: "いまどうしてる？", rows: 5  %>
+            <%= f.file_field :images, multiple: true %><br>
+            <div class="submit-block">
+            <%= f.submit class: "btn" %>
+            </div>
+            <% end %>
+        </div>
 <div id="footer">
     <p>© 2020 Rails blog</p>
 </div>

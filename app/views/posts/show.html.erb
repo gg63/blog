@@ -1,0 +1,5 @@
+     <%= link_to("/posts/#{@post.id}/destroy",{method:"post"}) do %>
+     <button type="button" class="btn btn-outline-primary">
+       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
+     </button>
+     <% end %>
