@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :profiles, only: [:show, :new, :create, :edit, :update]
-  # resource :likes, only: [:create, :destroy]
   root 'posts#index'
-  resources :posts 
+  resources :profiles, only: [:show, :new, :create, :edit, :update]
+  resources :posts
+  resources :likes, only: [:index, :create, :destroy]
   resources :users
+  
   get 'login', to: "sessions#new"
   post 'login', to: "sessions#create"
   delete 'logout', to: "sessions#destroy"
