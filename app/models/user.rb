@@ -4,7 +4,12 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :like_post, through: :likes, source: :post
+  # has_many :liked_post, through: :likes, source: :post
   
   delegate :name, :study, :purpose, :image, to: :profile
+  
+  # def liked_by?(post_id)
+  #   likes.where(post_id: post_id).exists?
+  # end
+
 end
