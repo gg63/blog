@@ -1,9 +1,11 @@
- <div class="content-block">
-        <% @posts.each do |post| %>
             <div class="content">
                 <div class="user-about">
                     <div class="image">
+                    <% if post.user.image.attached? %>
                         <%= image_tag post.user.image, style: "width: 60px; border-radius: 50%;" %>
+                    <% else %>
+                        <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+                    <% end %>
                     </div>
                     <div class="profile">
                         <div class="name-study">
@@ -34,15 +36,17 @@
                 <div class="action-menu">
                     <div class="like">
                         <% if current_user.liked_by?(post.id) %>
-                              <%= link_to like_path(post), method: :delete, remote: true %>
+                              <%= link_to like_path(post), method: :delete, remote: true do %>
                               <i class="fas fa-heart unlike-btn"></i>
+                              <% end %>
                               <%= post.likes.count %>
                           <% else %>
-                              <%= link_to likes_path(post), method: :post, remote: true %>
+                              <%= link_to likes_path(id: post.id), method: :post, remote: true do %>
                               <i class="fas fa-heart like-btn"></i>
+                              <% end %>
                               <%= post.likes.count %>
                         <% end %>
-                            <%= link_to  '削除', post, method: :delete , data: { confirm: 'Are you sure?' } %>
+                            <!--<= link_to  '削除', post, method: :delete , data: { confirm: 'Are you sure?' } %>-->
                     </div>
                     <div class="comment">
                         <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-chat-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -52,5 +56,3 @@
                     </div>
                 </div>
             </div>
-        <% end %>
-    </div>
