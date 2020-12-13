@@ -1,14 +1,17 @@
 class PostsController < ApplicationController
     before_action :redirect_unlogin_user
     before_action :find_post, only:[:show, :edit, :update, :destroy]
-
+    
     
     def index
          @posts = Post.all.order(created_at: :desc)
+         @post = current_user.posts.new
     end 
     
     def show
-      
+      @post = Post.find(params[:id])
+      @comments = @post.comments
+      @comment = Comment.new
     end
     
     def new

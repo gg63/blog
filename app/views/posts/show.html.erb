@@ -1,5 +1,36 @@
-     <%= link_to("/posts/#{@post.id}/destroy",{method:"post"}) do %>
-     <button type="button" class="btn btn-outline-primary">
-       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
-     </button>
-     <% end %>
+<div class="content">
+    <div class="user-about">
+        <div class="image">
+        </div>
+        <div class="profile">
+            <div class="name-study">
+                <div class="name">
+                    <%= @post.user.name %>
+                </div>
+                <div class="study">
+                   <%= "学習歴: #{@post.user.study}年" %>
+                </div>
+            </div>
+            <div class="purpose">
+              <%= "Ruby on Railsを学んでいる目的： #{@post.user.purpose} " %>
+            </div>
+        </div>
+    </div>
+    <div class="text">
+       <p><%= @post.content %></p>
+    </div>
+    </div>
+<h2>コメント一覧</h2>
+<% @comments.each do |c| %>
+  <div>
+    <a href="/users/<%= @post.user.id %>"><%= c.user.email %></a>
+    <%= c.content %>
+    <hr>
+  </div>
+<% end %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_field :content %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>
