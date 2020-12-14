@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   root 'posts#index'
   resources :profiles, only: [:show, :new, :create, :edit, :update]
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :likes, only: [:create, :destroy]
   resources :users
-  resources :comments, only: [:create, :destroy]
   
   get 'login', to: "sessions#new"
   post 'login', to: "sessions#create"

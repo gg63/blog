@@ -1,31 +1,24 @@
 class PostsController < ApplicationController
     before_action :redirect_unlogin_user
     before_action :find_post, only:[:show, :edit, :update, :destroy]
-    
-    
+
     def index
          @posts = Post.all.order(created_at: :desc)
          @post = current_user.posts.new
     end 
     
     def show
-      @post = Post.find(params[:id])
       @comments = @post.comments
       @comment = Comment.new
-    end
-    
-    def new
-        return redirect_to new_profile_path, alert: "プロフィールの登録をしてください" if current_user.profile.blank? 
-        @post = Post.new
+      @comments = @post.comments.order(created_at: :desc)
     end
     
     def edit
-        
     end
     
     def create
         @post = Post.new(post_params)
-        @post.user = current_user
+        @post.user_id = current_user.id
         if @post.save
             redirect_to root_path, notice: "投稿しました"
         else
