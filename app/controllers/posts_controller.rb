@@ -8,12 +8,16 @@ class PostsController < ApplicationController
     end 
     
     def show
-      @comments = @post.comments
       @comment = Comment.new
       @comments = @post.comments.order(created_at: :desc)
     end
     
     def edit
+    end
+    
+     def new
+        return redirect_to new_profile_path, alert: "プロフィールの登録をしてください" if current_user.profile.blank? 
+        @post = Post.new
     end
     
     def create
