@@ -1,14 +1,14 @@
 <%= comments.count %>件コメント
-<h6><a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">もっと見る....</a></h6>
-<% comments.first(2).each do |comment| %>
+<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
+    <% comments.first(2).each do |comment| %>
   <% unless comment.id.nil? %>
     <li class="comment-container">
         <div class="comment-box">
             <div class="comment-avatar">
-                <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
+                <!--<= attachment_image_tag comment.user, :image, format: "jpeg", class:"comment-image", size: "40x40" %>-->
             </div>
             <div class="comment-text">
-                <p><%="@#{comment.user.name}"%></p>
+                <!--<p><= link_to "@#{comment.user.name}", users_user_path(comment.user.id) %></p>-->
                 <div class="comment-entry">
                     <%= comment.content %>
                     <% if comment.user == current_user %>
@@ -25,31 +25,35 @@
     </li>
   <% end %>
 <% end %>
-
-    <div class="collapse" id="collapseExample">
-            <% comments.offset(2).each do |comment| %>
-              <% unless comment.id.nil? %>
-                <li class="comment-container">
-                    <div class="comment-box">
-                        <div class="comment-avatar">
-                            <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
-                        </div>
-                        <div class="comment-text">
-                            <p><%= "@#{comment.user.name}" %></p>
-                            <div class="comment-entry">
-                                <%= comment.content %>
-                                <% if comment.user == current_user %>
-                                    <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                                        <i class="fas fa-trash" style="color: black;"></i>
-                                    <% end %>
-                                <% end %>
-                            </div>
-                            <span class="comment-date pull-right">
-                                  <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                            </span>
-                        </div>
+    
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <% comments.offset(2).each do |comment| %>
+          <% unless comment.id.nil? %>
+            <li class="comment-container">
+                <div class="comment-box">
+                    <div class="comment-avatar">
+                        <!--<= attachment_image_tag comment.user, :image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>-->
                     </div>
-                </li>
-              <% end %>
-            <% end %>
+                    <div class="comment-text">
+                        <p><%= "@#{comment.user.name}" %></p>
+                        <div class="comment-entry">
+                            <%= comment.content %>
+                            <% if comment.user == current_user %>
+                                <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+                                    <i class="fas fa-trash" style="color: black;"></i>
+                                <% end %>
+                            <% end %>
+                        </div>
+                        <span class="comment-date pull-right">
+                              <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        </span>
+                    </div>
+                </div>
+            </li>
+          <% end %>
+        <% end %>
     </div>
+</div>
+    
+    
