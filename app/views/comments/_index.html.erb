@@ -1,14 +1,18 @@
 <%= comments.count %>件コメント
-<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
-    <% comments.first(2).each do |comment| %>
+<p>
+<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    もっとみる...
+</a>
+</p>
+        <% comments.first(2).each do |comment| %>
   <% unless comment.id.nil? %>
     <li class="comment-container">
         <div class="comment-box">
             <div class="comment-avatar">
-                <!--<= attachment_image_tag comment.user, :image, format: "jpeg", class:"comment-image", size: "40x40" %>-->
+                <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
             </div>
             <div class="comment-text">
-                <!--<p><= link_to "@#{comment.user.name}", users_user_path(comment.user.id) %></p>-->
+                <p><%= link_to "@#{comment.user.name}", user_path(@user) %></p>
                 <div class="comment-entry">
                     <%= comment.content %>
                     <% if comment.user == current_user %>
@@ -27,13 +31,12 @@
 <% end %>
     
 <div class="collapse" id="collapseExample">
-    <div class="card card-body">
         <% comments.offset(2).each do |comment| %>
           <% unless comment.id.nil? %>
             <li class="comment-container">
                 <div class="comment-box">
                     <div class="comment-avatar">
-                        <!--<= attachment_image_tag comment.user, :image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>-->
+                                    <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
                     </div>
                     <div class="comment-text">
                         <p><%= "@#{comment.user.name}" %></p>
