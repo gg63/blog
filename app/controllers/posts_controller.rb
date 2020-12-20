@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :redirect_unlogin_user
-    before_action :find_post, only:[:show, :edit, :update, :destroy]
+    before_action :find_post, only:[:edit, :update, :destroy]
+    before_action :find_public_post, only:[:show]
 
     def index
          @posts = Post.all.order(created_at: :desc)
@@ -8,9 +9,9 @@ class PostsController < ApplicationController
     end 
     
     def show
-    @post = Post.find(params[:id])
-    @comment = Comment.new
-    @comments = @post.comments.order(created_at: :desc)
+        @post = Post.find(params[:id])
+        @comment = Comment.new
+        @comments = @post.comments.order(created_at: :desc)
     end
     
     def edit
@@ -56,6 +57,11 @@ class PostsController < ApplicationController
     
     def find_post
         @post = Post.where(user_id: session[:user_id]).find(params[:id])
+        @user = User.find(@post.user_id)
+    end
+    
+    def find_public_post
+        @post = Post.find(params[:id])
         @user = User.find(@post.user_id)
     end
 end

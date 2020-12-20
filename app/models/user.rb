@@ -16,19 +16,17 @@ class User < ApplicationRecord
   has_many :reverse_of_follows, class_name: 'Follow', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_follows, source: :user
 
-  def follow(other_user)
-    unless self == other_user
-      self.follows.find_or_create_by(follow_id: other_user.id)
-    end
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
   end
 
-  def unfollow(other_user)
-    follow = self.relationships.find_by(follow_id: other_user.id)
-    follow.destroy if follow
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'  
   end
-
-  def following?(other_user)
-    self.follow.include?(other_user)
-  end
-
 end
