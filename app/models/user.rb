@@ -11,22 +11,20 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   delegate :name, :study, :purpose, :image, to: :profile
   
-  has_many :follows
-  has_many :followings, through: :follows, source: :follow
-  has_many :reverse_of_follows, class_name: 'Follow', foreign_key: 'follow_id'
-  has_many :followers, through: :reverse_of_follows, source: :user
-
-  def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following.paginate(page: params[:page])
-    render 'show_follow'
+  has_many :following_relationships,foreign_key: "follower_id", class_name: "FollowRelationship",  dependent: :destroy
+  has_many :followings, through: :following_relationships
+  has_many :follower_relationships,foreign_key: "following_id",class_name: "FollowRelationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
+  
+  def following?(other_user)
+    self.followings.include?(other_user)
   end
-
-  def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
-    render 'show_follow'  
+  
+  def follow(other_user)
+    self.following_relationships.create(following_id: other_user.id)
+  end
+  
+  def unfollow(other_user)
+    self.following_relationships.find_by(following_id: other_user.id).destroy
   end
 end

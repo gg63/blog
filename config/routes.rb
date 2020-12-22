@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get :following,:followers
     end
   end 
-  resources :follows, only:[:create, :destroy]
+  resources :follow_relationships, only: [:create, :destroy]
   
   get 'login', to: "sessions#new"
   post 'login', to: "sessions#create"
