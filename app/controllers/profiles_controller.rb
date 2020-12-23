@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
     end
     
     def update
+        @profile = Profile.find(params[:id])
         if @profile.update(profile_params)
             redirect_to posts_path, notice: "プロフィールの情報更新が完了しました"
         else

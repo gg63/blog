@@ -9,10 +9,9 @@
         </div>
         <div class="profile">
             <div class="name-study">
-                <div class="name">
-                    <% link_to users_path(@user) do %>
-                    <%= post.user.name %>
-                    <% end %>
+                <div class="name"> 
+                <!--<=link_to post.user.name, user_path(@user) %>-->
+                <%= post.user.name %>
                 </div>
                 <div class="study">
                    <%= "学習歴: #{post.user.study}年" %>
