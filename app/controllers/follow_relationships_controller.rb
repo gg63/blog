@@ -1,19 +1,12 @@
 class FollowRelationshipsController < ApplicationController
+
     def create
-        @user =User.find(params[:follow_relationship][:following_id])
+        @user = User.find(params[:following_id])
         current_user.follow(@user)
-        respond_to do |format|
-          format.html {redirect_to @user, flash: {success: 'フォローしました！'} }
-          format.js
-        end
     end
     
     def destroy
-        @user = User.find(params[:follow_relationship][:following_id])
+        @user = User.find(params[:id])
         current_user.unfollow(@user)
-        respond_to do |format|
-            format.html {redirect_back(fallback_location: root_url)}
-                format.js
-        end
     end
 end

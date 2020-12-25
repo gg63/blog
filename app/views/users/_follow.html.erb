@@ -1,9 +1,4 @@
-<% if logged_in? && @user != current_user%>
-  <div id="follow_form">
-    <% if current_user.following?(@user) %>
-      <%= render "unfollow" %>
-    <% else %>
-      <%= render "follow" %>
-    <% end %>
-  </div>
+<%= form_with model: @set_relationship, url: follow_relationship_path, local: true do |f| %>
+  <%= f.hidden_field :follow_id, value: @user.id %>
+  <%= f.submit "フォロー", class: "Mypage_btn Left" %>
 <% end %>
