@@ -2,7 +2,7 @@
 <%= @user.name %>
 <div class="follower">
 <%= link_to followers_user_path(@user.id) do %>
-<h5 style="color: black;">フォロワー<%= @user.followers.count %></h5> 
+<h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5> 
 <% end %> 
 </div>
 
@@ -12,5 +12,7 @@
     <% end %>
 </div>
 <div>
-<%= render 'follow' %>
+<%= render 'follow_form' %>
 </div>
+
+<%= link_to "ホームへ戻る", root_path %>

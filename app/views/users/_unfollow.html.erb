@@ -1,4 +1,3 @@
-<%= form_with(model: current_user,url: following_relationship(@user).find_by(following_id: @user.id),method: :delete,remote: true) do |f| %>
-  <%= f.hidden_field :following_id %>  
+<%= form_with(model: current_user,url: follow_relationship_path(@user), method: :delete,remote: true) do |f| %>
   <%= f.submit "フォロー解除", class: "btn btn-outline-secondary" %>
 <% end %>
