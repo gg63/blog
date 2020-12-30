@@ -1,3 +1,4 @@
+<body>
 <div class="content">
     <div class="user-about">
         <div class="image">
@@ -10,8 +11,7 @@
         <div class="profile">
             <div class="name-study">
                 <div class="name"> 
-                <!--<=link_to post.user.name, user_path(@user) %>-->
-                <%= post.user.name %>
+                <%=link_to post.user.name, user_path(post.user_id) %>
                 </div>
                 <div class="study">
                    <%= "学習歴: #{post.user.study}年" %>
@@ -57,3 +57,4 @@
         </div>
     </div>
 </div>
+</body>

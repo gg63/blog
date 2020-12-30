@@ -1,12 +1,16 @@
 <div class="content">
     <div class="user-about">
         <div class="image">
-            <%= image_tag @post.user.image, style: "width: 60px; border-radius: 50%;" %>
+            <% if @post.user.image.attached? %>
+                <%= image_tag @post.user.image, style: "width: 60px; border-radius: 50%;" %>
+            <% else %>
+                <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+            <% end %>
         </div>
         <div class="profile">
             <div class="name-study">
                 <div class="name">
-                    <%= @post.user.name %>
+                    <%=link_to @post.user.name, user_path %>
                 </div>
                 <div class="study">
                    <%= "学習歴: #{@post.user.study}年" %>
@@ -32,9 +36,10 @@
         </li>
     </ul>
     <hr>
+    <div id=comment_form>
         <div class="comment-create">
-            <h3 class="text">コメント投稿</h3>
             <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+        </div>
         </div>
 </div>
 

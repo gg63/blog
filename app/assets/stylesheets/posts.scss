@@ -5,8 +5,15 @@
 @import "bootstrap";
 
 body {
-    max-width: 1080px;
-    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+#posts-index {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #header {

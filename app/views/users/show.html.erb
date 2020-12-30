@@ -1,4 +1,9 @@
 <h3>プロフィールページ</h3>
+<% if @user.image.attached? %>
+    <%= image_tag @user.image, style: "width: 60px; border-radius: 50%;" %>
+<% else %>
+    <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+<% end %>
 <%= @user.name %>
 <div class="follower">
 <%= link_to followers_user_path(@user.id) do %>

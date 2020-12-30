@@ -7,7 +7,11 @@
     <li class="comment-container">
         <div class="comment-box">
             <div class="comment-avatar">
-                <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
+                <% if comment.user.image.attached? %>
+                    <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
+                <% else %>
+                    <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+                <% end %>
             </div>
             <div class="comment-text">
                 <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
@@ -34,7 +38,11 @@
             <li class="comment-container">
                 <div class="comment-box">
                     <div class="comment-avatar">
-                        <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
+                        <% if comment.user.image.attached? %>
+                            <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
+                        <% else %>
+                            <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+                        <% end %>
                     </div>
                     <div class="comment-text">
                         <p><%= "@#{comment.user.name}" %></p>

@@ -1,6 +1,13 @@
 // Place all the styles related to the profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#profiles-new {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 input[type="text"] {
     border: 2px solid #000;  
     border-radius: 0.67em;   
@@ -33,6 +40,7 @@ input[type="text"] {
   border-radius: 5%;
   box-shadow: 6px 6px 3px #666666;
 }
+
 .btn:hover {
  box-shadow: none;
  color: #333;
