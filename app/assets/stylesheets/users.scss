@@ -1,6 +1,23 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#users-show {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #F5F5DC;
+}
+
+#users-new {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 h2 {
     text-align: center;
 }
@@ -40,4 +57,10 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.about {
+    border-top: 2px solid #F0E68C;
+    border-bottom: 2px solid #F0E68C;
+    padding: 27px;
+    margin-bottom: 10px;
 }

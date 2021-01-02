@@ -1,10 +1,28 @@
 <h3>プロフィールページ</h3>
-<% if @user.image.attached? %>
-    <%= image_tag @user.image, style: "width: 60px; border-radius: 50%;" %>
-<% else %>
-    <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
-<% end %>
-<%= @user.name %>
+<div class="about">
+    <div class="user-about">
+        <div class="image">
+        <% if @user.image.attached? %>
+            <%= image_tag @user.image, style: "width: 60px; border-radius: 50%;" %>
+        <% else %>
+            <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+        <% end %>
+        </div>
+        <div class="profile">
+            <div class="name-study">
+                <div class="name"> 
+                <%= @user.name%>
+                </div>
+                <div class="study">
+                   <%= "学習歴: #{@user.study}年" %>
+                </div>
+            </div>
+            <div class="purpose">
+              <%= "Ruby on Railsを学んでいる目的： #{@user.purpose} " %>
+            </div>
+        </div>
+    </div>
+
 <div class="follower">
 <%= link_to followers_user_path(@user.id) do %>
 <h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5> 
@@ -19,5 +37,5 @@
 <div>
 <%= render 'follow_form' %>
 </div>
-
+</div>
 <%= link_to "ホームへ戻る", root_path %>

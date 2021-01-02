@@ -1,8 +1,8 @@
 <%= comments.count %>件コメント
-<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:20%;">
+<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:15%; font-size:13px;">
     もっとみる...
 </a>
-    <% comments.first(2).each do |comment| %>
+<% comments.first(2).each do |comment| %>
   <% unless comment.id.nil? %>
     <li class="comment-container">
         <div class="comment-box">
@@ -17,51 +17,55 @@
                 <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
                 <div class="comment-entry">
                     <%= comment.content %>
-                    <% if comment.user == current_user %>
-                        <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                            <i class="fas fa-trash" style="color: black;"></i>
-                        <% end %>
-                    <% end %>
                 </div>
-                <span class="comment-date pull-right">
-                      <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                </span>
             </div>
         </div>
+            <!--<div class="delete">-->
+                <% if comment.user == current_user %>
+                    <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+                        <i class="fas fa-trash" style="color: black;"></i>
+                    <% end %>
+                <% end %>
+            <!--</div>-->
+            <span class="comment-date pull-right">
+                  <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            </span>
     </li>
   <% end %>
 <% end %>
  <!--ドロップダウン部分   -->
 <div class="collapse" id="collapseExample">
-        <% comments.offset(2).each do |comment| %>
-          <% unless comment.id.nil? %>
-            <li class="comment-container">
-                <div class="comment-box">
-                    <div class="comment-avatar">
-                        <% if comment.user.image.attached? %>
-                            <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
-                        <% else %>
-                            <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
-                        <% end %>
-                    </div>
-                    <div class="comment-text">
-                        <p><%= "@#{comment.user.name}" %></p>
-                        <div class="comment-entry">
-                            <%= comment.content %>
-                            <% if comment.user == current_user %>
-                                <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                                    <i class="fas fa-trash" style="color: black;"></i>
-                                <% end %>
-                            <% end %>
-                        <span class="comment-date pull-right">
-                              <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                        </span>
-                        </div>
+    <% comments.offset(2).each do |comment| %>
+      <% unless comment.id.nil? %>
+        <li class="comment-container">
+            <div class="comment-box">
+                <div class="comment-avatar">
+                    <% if comment.user.image.attached? %>
+                        <%= image_tag comment.user.image, style: "width: 60px; border-radius: 50%;" %>
+                    <% else %>
+                        <%= image_tag "profile.png", style: "width: 60px; border-radius: 50%;" %>
+                    <% end %>
+                </div>
+                <div class="comment-text">
+                    <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
+                    <div class="comment-entry">
+                        <%= comment.content %>
                     </div>
                 </div>
-            </li>
-          <% end %>
-        <% end %>
+            </div>
+            <div class="delete">
+                <% if comment.user == current_user %>
+                    <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+                        <i class="fas fa-trash" style="color: black;"></i>
+                    <% end %>
+                <% end %>
+            </div>
+            <span class="comment-date pull-right">
+                  <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            </span>
+        </li>
+      <% end %>
+    <% end %>
 </div>
     
     
